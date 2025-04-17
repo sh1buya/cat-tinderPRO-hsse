@@ -1,7 +1,6 @@
 name: cat_tinder_hsse
-description: "A new Flutter project."
-
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+description: A tinder‑like app for cats 🐾
+publish_to: none
 
 version: 1.0.0+1
 
@@ -11,33 +10,30 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  intl: ^0.20.2
-  provider: ^6.1.4
-  cupertino_icons: ^1.0.8
+  equatable: ^2.0.5
+  connectivity_plus: ^6.0.3
+  flutter_bloc: ^9.1.0
+  get_it: ^8.0.3
   http: ^1.2.0
   cached_network_image: ^3.3.0
-  swipable_stack: ^2.0.0
-  google_fonts: ^6.1.0
-  animated_text_kit: ^4.2.2
+  intl: ^0.20.2
+  cupertino_icons: ^1.0.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: ^5.0.0
+  dart_code_metrics: ^4.19.2
   flutter_launcher_icons: ^0.13.1
 
 flutter_launcher_icons:
   android: true
   ios: true
-  remove_alpha_ios: true  # <-- Добавьте эту строку
-  image_path: "assets/images/icon.png"
-  adaptive_icon_background: "#F5F5F5" # Фон для адаптивных иконок
-
+  remove_alpha_ios: true
+  image_path: assets/images/icon.png
+  adaptive_icon_background: '#F5F5F5'
 
 flutter:
-
   uses-material-design: true
   assets:
     - assets/images/icon.png
@@ -46,4 +42,3 @@ flutter:
       fonts:
         - asset: assets/fonts/Roboto-Medium.ttf
         - asset: assets/fonts/Roboto-Bold.ttf
-

@@ -26,6 +26,7 @@ MERGED from /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/android/app
 INJECTED from /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 INJECTED from /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 INJECTED from /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+MERGED from [:connectivity_plus] /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/build/connectivity_plus/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:2:1-9:12
 MERGED from [:path_provider_android] /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/build/path_provider_android/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:2:1-7:12
 MERGED from [:sqflite_android] /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/build/sqflite_android/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.fragment:fragment:1.7.1] /Users/sh1buyaa/.gradle/caches/8.10.2/transforms/55520e4df2220e27f13f0bbb7467d11a/transformed/fragment-1.7.1/AndroidManifest.xml:2:1-7:12
@@ -70,6 +71,8 @@ MERGED from /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/android/app
 		ADDED from /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/android/app/src/main/AndroidManifest.xml:2:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/android/app/src/main/AndroidManifest.xml:3:5-78
+MERGED from [:connectivity_plus] /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/build/connectivity_plus/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:7:5-79
+MERGED from [:connectivity_plus] /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/build/connectivity_plus/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:7:5-79
 	android:name
 		ADDED from /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/android/app/src/main/AndroidManifest.xml:3:22-76
 queries
@@ -88,6 +91,8 @@ uses-sdk
 INJECTED from /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/android/app/src/debug/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/android/app/src/debug/AndroidManifest.xml
 INJECTED from /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/android/app/src/debug/AndroidManifest.xml
+MERGED from [:connectivity_plus] /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/build/connectivity_plus/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:5:5-44
+MERGED from [:connectivity_plus] /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/build/connectivity_plus/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/build/path_provider_android/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/build/path_provider_android/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:5:5-44
 MERGED from [:sqflite_android] /Users/sh1buyaa/AndroidStudioProjects/cat-tinderPRO-hsse/build/sqflite_android/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:5:5-44

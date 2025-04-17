@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:cat_tinder_hsse/providers/cats_provider.dart';
-import 'package:cat_tinder_hsse/screens/home_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:cat_tinder_hsse/core/di/locator.dart';
+import 'package:cat_tinder_hsse/presentation/bloc/cat/cat_bloc.dart';
+import 'package:cat_tinder_hsse/presentation/bloc/favorites/favorites_bloc.dart';
+import 'package:cat_tinder_hsse/presentation/screens/home_screen.dart';
+
+import 'core/theme/app_theme.dart';
 
 void main() {
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => CatsProvider()),
-      ],
-      child: const MyApp(),
-    ),
-  );
+  setupLocator();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,22 +17,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Cat Tinder',
-      theme: ThemeData(
-        primaryColor: const Color(0xFF607D8B),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFFF5F5F5),
-          titleTextStyle: TextStyle(
-            color: Colors.black87,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-          iconTheme: IconThemeData(color: Colors.black87),
-        ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => getIt<CatBloc>()),
+        BlocProvider(create: (_) => getIt<FavoritesBloc>()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: appTheme(),
+        home: const HomeScreen(),
       ),
-      home: const HomeScreen(),
-      debugShowCheckedModeBanner: false,
     );
   }
 }
