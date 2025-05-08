@@ -4,16 +4,18 @@ sealed class FavoritesState {
   const FavoritesState();
 }
 
-class FavoritesInitial extends FavoritesState {}
+class FavoritesInitial extends FavoritesState {
+  const FavoritesInitial();
+}
 
 class FavoritesUpdated extends FavoritesState {
-  final List<LikedCat> cats;
-  final List<String> breeds;
-  final String? currentFilter;
-
   const FavoritesUpdated({
     required this.cats,
     required this.breeds,
-    this.currentFilter,
+    required this.currentFilter,
   });
+
+  final List<Cat> cats;
+  final List<String> breeds;
+  final String? currentFilter;
 }

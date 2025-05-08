@@ -4,17 +4,21 @@ sealed class FavoritesEvent {
   const FavoritesEvent();
 }
 
+class InitFavorites extends FavoritesEvent {
+  const InitFavorites();
+}
+
 class AddFavorite extends FavoritesEvent {
-  final Cat cat;
   const AddFavorite(this.cat);
+  final Cat cat;
 }
 
 class RemoveFavorite extends FavoritesEvent {
-  final String id;
   const RemoveFavorite(this.id);
+  final String id;
 }
 
 class FilterFavorites extends FavoritesEvent {
-  final String? breed;
   const FilterFavorites(this.breed);
+  final String? breed;
 }

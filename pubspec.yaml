@@ -1,29 +1,38 @@
 name: cat_tinder_hsse
-description: A tinder‑like app for cats 🐾
+description: A tinder-like app for cats 🐾
 publish_to: none
-
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2
+  sdk: ">=3.7.2 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  equatable: ^2.0.5
-  connectivity_plus: ^6.0.3
   flutter_bloc: ^9.1.0
   get_it: ^8.0.3
+  equatable: ^2.0.5
+
   http: ^1.2.0
+  connectivity_plus: ^6.0.3
   cached_network_image: ^3.3.0
   intl: ^0.20.2
+
+  drift: ^2.26.1
+  drift_flutter: ^0.2.4
+  sqlite3_flutter_libs: ^0.5.32
+  path_provider: ^2.1.2
+  path: ^1.9.0
+
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.4.9
+  drift_dev: ^2.26.1
+  mocktail: ^1.0.4
   flutter_lints: ^5.0.0
-  dart_code_metrics: ^4.19.2
   flutter_launcher_icons: ^0.13.1
 
 flutter_launcher_icons:

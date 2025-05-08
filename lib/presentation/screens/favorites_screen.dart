@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cat_tinder_hsse/core/theme/app_theme.dart';
-import 'package:intl/intl.dart';
+import 'package:cat_tinder_hsse/domain/entities/cat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:cat_tinder_hsse/presentation/models/liked_cat.dart';
 import 'package:cat_tinder_hsse/presentation/bloc/favorites/favorites_bloc.dart';
 import 'package:cat_tinder_hsse/presentation/widgets/filter_dropdown.dart';
 
@@ -21,12 +20,21 @@ class FavoritesScreen extends StatelessWidget {
             body: Center(child: CircularProgressIndicator()),
           );
         }
+
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: _appBarColor,
             title: const Text('Liked Cats', style: AppText.title),
-            actions: [FilterDropdown(breeds: state.breeds)],
+            actions: [
+              FilterDropdown(
+                breeds: state.breeds,
+                current: state.currentFilter,
+                onSelected:
+                    (b) =>
+                        context.read<FavoritesBloc>().add(FilterFavorites(b)),
+              ),
+            ],
           ),
           body: _list(context, state.cats),
         );
@@ -34,13 +42,11 @@ class FavoritesScreen extends StatelessWidget {
     );
   }
 
-  Widget _list(BuildContext context, List<LikedCat> cats) => ListView.separated(
+  Widget _list(BuildContext context, List<Cat> cats) => ListView.separated(
     itemCount: cats.length,
     separatorBuilder: (_, __) => const Divider(height: 1),
     itemBuilder: (_, i) {
-      final liked = cats[i];
-      final cat = liked.cat;
-      final date = DateFormat('dd.MM.yyyy  HH:mm').format(liked.likedDate);
+      final cat = cats[i];
 
       return Dismissible(
         key: Key(cat.id),
@@ -64,7 +70,6 @@ class FavoritesScreen extends StatelessWidget {
             ),
           ),
           title: Text(cat.breedName),
-          subtitle: Text(date),
           trailing: IconButton(
             icon: const Icon(Icons.delete_outline, color: Colors.grey),
             onPressed:

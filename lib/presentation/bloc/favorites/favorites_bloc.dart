@@ -1,53 +1,63 @@
-import 'package:cat_tinder_hsse/presentation/models/liked_cat.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cat_tinder_hsse/domain/entities/cat.dart';
+import 'package:cat_tinder_hsse/data/models/cat_dto.dart';
+import 'package:cat_tinder_hsse/data/local/favorites_local_data_source.dart';
 
 part 'favorites_event.dart';
 part 'favorites_state.dart';
 
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
-  final List<LikedCat> _liked = [];
+  FavoritesBloc(this._ds) : super(const FavoritesInitial()) {
+    on<InitFavorites>(_onInit);
+    on<AddFavorite>(_onAdd);
+    on<RemoveFavorite>(_onRemove);
+    on<FilterFavorites>(_onFilter);
+    add(const InitFavorites());
+  }
+
+  final FavoritesLocalDataSource _ds;
+  final _liked = <Cat>[];
   String? _filter;
 
-  FavoritesBloc() : super(FavoritesInitial()) {
-    on<AddFavorite>(_add);
-    on<RemoveFavorite>(_remove);
-    on<FilterFavorites>(_filterBreed);
+  Future<void> _onInit(InitFavorites e, Emitter<FavoritesState> emit) async {
+    final stored = await _ds.getAll();
+    _liked
+      ..clear()
+      ..addAll(stored.map((e) => e.toEntity()));
+    emit(_build());
   }
 
-  void _add(AddFavorite e, Emitter<FavoritesState> emit) {
-    _liked.add(LikedCat(cat: e.cat, likedDate: DateTime.now()));
-    emit(_updated());
+  Future<void> _onAdd(AddFavorite e, Emitter<FavoritesState> emit) async {
+    _liked.add(e.cat);
+    await _ds.insert(e.cat.toDto());
+    emit(_build());
   }
 
-  void _remove(RemoveFavorite e, Emitter<FavoritesState> emit) {
-    _liked.removeWhere((l) => l.cat.id == e.id);
-    if (_filter != null && !_liked.any((l) => l.cat.breedName == _filter)) {
-      _filter = null;
-    }
-    emit(_updated());
+  Future<void> _onRemove(RemoveFavorite e, Emitter<FavoritesState> emit) async {
+    _liked.removeWhere((c) => c.id == e.id);
+    await _ds.delete(e.id);
+    emit(_build());
   }
 
-  void _filterBreed(FilterFavorites e, Emitter<FavoritesState> emit) {
+  void _onFilter(FilterFavorites e, Emitter<FavoritesState> emit) {
     _filter = e.breed;
-    emit(_updated());
+    emit(_build());
   }
 
-  List<LikedCat> _apply() =>
-      _filter == null
-          ? _liked
-          : _liked.where((l) => l.cat.breedName == _filter).toList();
+  FavoritesUpdated _build() {
+    final breeds = _liked.map((c) => c.breedName).toSet().toList();
 
-  List<String> _breeds() =>
-      _liked
-          .map((l) => l.cat.breedName)
-          .where((b) => b.isNotEmpty)
-          .toSet()
-          .toList();
+    if (_filter != null && !breeds.contains(_filter)) _filter = null;
 
-  FavoritesUpdated _updated() => FavoritesUpdated(
-    cats: _apply(),
-    breeds: _breeds(),
-    currentFilter: _filter,
-  );
+    final visible =
+        _filter == null
+            ? _liked
+            : _liked.where((c) => c.breedName == _filter).toList();
+
+    return FavoritesUpdated(
+      cats: visible,
+      breeds: breeds,
+      currentFilter: _filter,
+    );
+  }
 }
